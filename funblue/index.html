@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Funblue.org</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #4c6ef5, #28a7e9, #20c997, #0dcaf0);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .falling-text {
+            transition: transform 1s ease, opacity 1s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        body.laser-cursor {
+            cursor: url('https://img.icons8.com/ios/452/laser.png'), auto;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(14, 14, 94, 0.945);">
+    <nav style="text-align: center; padding: 10px; background-color: rgba(10, 10, 70, 0.9);">
+        <a href="index.html" style="margin: 0 10px;">Home</a>
+        <a href="contact.html" style="margin: 0 10px;">Contact</a>
+    </nav>
+
+    <h1 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center;">Funblue.org</h1>
+    <p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center;">random website made for fun</p>
+    <div>
+    </div>
+
+    <div>
+        <h6 style="color: aliceblue;font-family: Verdana, Geneva, Tahoma, sans-serif;">if you dont know the background changer is a joke because the graident hhehehheheehebeh</h6>
+        <h1 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">Random Stuff</h1>
+        <label for="colorPicker" style="color: aliceblue;">Want to change the background color? You can! </label>
+        <input type="color" id="colorPicker" name="color" value="#0e0e5e" onchange="changeColor(this.value)">
+        <script>
+            function changeColor(color) {
+                document.body.style.backgroundColor = color;
+            }
+        </script>
+    </div>
+
+    <label for="fontPicker" style="color: aliceblue;">Want to pick a font? You can! </label>
+    <select id="fontPicker" onchange="changeFont(this.value)">
+        <option value="Verdana">Verdana</option>
+        <option value="Arial">Arial</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="Times New Roman">Times New Roman</option>
+    </select>
+    <script>
+        function changeFont(font) {
+            document.body.style.fontFamily = font;
+        }
+    </script>
+
+    <div id="quote-section">
+        <p id="quote" style="color: aliceblue; font-family:Verdana, Geneva, Tahoma, sans-serif ;">selecting</p>
+    </div>
+    <script>
+        const quotes = [
+            "The color blue is often associated with calmness and tranquility.",
+            "Did you know that the word 'blue' was historically rare in language?",
+            "Blue is often said to be the color of trust and loyalty."
+        ];
+
+        let currentQuote = 0;
+
+        function showQuote() {
+            document.getElementById("quote").textContent = quotes[currentQuote];
+            currentQuote = (currentQuote + 1) % quotes.length;
+        }
+
+        setInterval(showQuote, 5000);
+        showQuote(); // Show first quote
+    </script>
+
+    <h2 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">My Time</h2>
+    <p id="creatorClock" style="font-size: 24px; font-family: Verdana, Geneva, Tahoma, sans-serif; color: aliceblue;"></p>
+
+    <script>
+        function updateTime() {
+            const options = { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const time = new Intl.DateTimeFormat('en-GB', options).format(new Date());
+            document.getElementById("creatorClock").innerText = time;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Show first time immediately
+    </script>
+
+    <!-- Laser Gun Button -->
+    <button id="laserButton" onclick="activateLaser()" style="padding: 10px 20px; font-size: 16px; background-color: #0e0e5e; color: aliceblue; border: none;">Gimme a laser gun</button>
+
+    <!-- Falling Text -->
+    <div id="textContainer" style="text-align: center; color: aliceblue; font-size: 24px; margin-top: 30px;">
+        <p class="falling-text">click me with you epic laser gun!</p>
+        <p class="falling-text">I'm another piece of text!</p>
+        <p class="falling-text">And another text to fall!</p>
+    </div>
+
+    <script>
+        
+        function activateLaser() {
+            document.body.classList.add("laser-cursor");
+        }
+
+        // Make the text fall when clicked
+        document.querySelectorAll('.falling-text').forEach(text => {
+            text.addEventListener('click', function () {
+                this.style.transform = 'translateY(300px)';
+                this.style.opacity = '0';
+            });
+        });
+    </script>
+    <script>
+        let keys = [];
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    
+        window.addEventListener('keydown', (e) => {
+            keys.push(e.key);
+            keys.splice(-konamiCode.length - 1, keys.length - konamiCode.length);
+            if (keys.join('').includes(konamiCode.join(''))) {
+                document.body.style.background = 'radial-gradient(circle, #ff5733, #6c3483, #3498db)';
+                alert('super mode activated!');
+            }
+        });
+    </script>
+    
+    
+    <button onclick="toggleGlowMode()" style="padding: 10px;">activate glow mode?</button>
+<script>
+    function toggleGlowMode() {
+        document.body.classList.toggle('glow-mode');
+    }
+</script>
+<style>
+    .glow-mode {
+        background-color: black !important;
+        color: cyan !important;
+        text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    }
+
+    .glow-mode button {
+        background-color: black;
+        color: cyan;
+        border: 1px solid cyan;
+        box-shadow: 0 0 10px cyan;
+    }
+</style>
+
+
+<div id="quiz">
+    <p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">what is the hexadecimal code for pure blue?</p>
+    <button onclick="checkAnswer('#0000ff')">#0000ff</button>
+    <button onclick="checkAnswer('#ff0000')">#ff0000</button>
+    <button onclick="checkAnswer('#00ff00')">#00ff00</button>
+</div>
+<p id="quizResult"></p>
+<script>
+    function checkAnswer(answer) {
+        const result = document.getElementById('quizResult');
+        if (answer === '#0000ff') {
+            result.textContent = 'your maybe a dev its #0000ff. Wow!';
+        } else {
+            result.textContent = 'uh oh not correct';
+        }
+    }
+</script>
+
+<p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">time left until national blue day:</p>
+<p id="countdown" style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;"></p>
+<script>
+    const targetDate = new Date('2024-12-31T00:00:00').getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+</script>
+
+
+<style>
+   
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    
+    h1 {
+        font-size: 2.5em;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1.2em;
+        text-align: justify;
+    }
+
+   
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+  
+    .nav {
+        display: flex;
+        justify-content: space-around;
+        background: #007bff;
+        padding: 10px;
+        color: white;
+    }
+
+    .nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+
+    .nav a:hover {
+        background: #0056b3;
+        border-radius: 5px;
+    }
+
+   
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: #f4f4f4;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+  
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        .nav {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+<p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">you can draw here using blue color</p>
+<canvas id="drawCanvas" width="500" height="300" style="border: 1px solid black;"></canvas>
+<script>
+    const canvas = document.getElementById('drawCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    canvas.addEventListener('mousedown', () => drawing = true);
+    canvas.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mousemove', (e) => {
+        if (!drawing) return;
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(e.offsetX, e.offsetY, 5, 0, Math.PI * 2);
+        ctx.fill();
+    });
+</script>
+
+<h2 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">countdown timer</h2>
+<p id="timer" style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">time left: 00:00</p>
+<input id="timeInput" placeholder="Enter time in seconds" style="margin-right: 10px; padding: 5px;" />
+<button onclick="startTimer()" style="padding: 10px; background-color: #0e0e5e; color: aliceblue; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif;">Start Timer</button>
+
+<script>
+    let countdown;
+
+    function startTimer() {
+        const time = parseInt(document.getElementById("timeInput").value);
+        if (isNaN(time) || time <= 0) {
+            alert("Please enter a valid time in seconds!");
+            return;
+        }
+        clearInterval(countdown);
+        let remainingTime = time;
+        updateDisplay(remainingTime);
+        countdown = setInterval(() => {
+            remainingTime--;
+            updateDisplay(remainingTime);
+            if (remainingTime <= 0) {
+                clearInterval(countdown);
+                alert("Time's up!");
+            }
+        }, 1000);
+    }
+
+    function updateDisplay(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        document.getElementById("timer").textContent = `Time left: ${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+</script>
+ 
+  
+<h2 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">rock, paper, scissors</h2>
+<p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">choose your move:</p>
+<button onclick="playRPS('Rock')" style="padding: 10px; margin: 5px; background-color: #0e0e5e; color: aliceblue; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif;">rock</button>
+<button onclick="playRPS('Paper')" style="padding: 10px; margin: 5px; background-color: #0e0e5e; color: aliceblue; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif;">paper</button>
+<button onclick="playRPS('Scissors')" style="padding: 10px; margin: 5px; background-color: #0e0e5e; color: aliceblue; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif;">scissors</button>
+<p id="rpsResult" style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;"></p>
+
+<script>
+    function playRPS(playerChoice) {
+        const choices = ["Rock", "Paper", "Scissors"];
+        const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+        let result;
+        if (playerChoice === computerChoice) {
+            result = "It's a tie!";
+        } else if (
+            (playerChoice === "Rock" && computerChoice === "Scissors") ||
+            (playerChoice === "Paper" && computerChoice === "Rock") ||
+            (playerChoice === "Scissors" && computerChoice === "Paper")
+        ) {
+            result = "you win!";
+        } else {
+            result = "you lose!";
+        }
+        document.getElementById("rpsResult").textContent = `You chose ${playerChoice}, computer chose ${computerChoice}. ${result}`;
+    }
+</script>
+
+<h2 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">simple to-do list</h2>
+<input type="text" id="taskInput" placeholder="Enter a new task" style="padding: 5px; margin: 5px;">
+<button onclick="addTask()" style="padding: 10px; background-color: #0e0e5e; color: aliceblue; border: none;">Add Task</button>
+<ul id="taskList" style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;"></ul>
+
+<script>
+    function addTask() {
+        const taskInput = document.getElementById("taskInput");
+        const taskText = taskInput.value;
+        if (taskText === "") return;
+
+        const li = document.createElement("li");
+        li.textContent = taskText;
+        li.style.cursor = "pointer";
+        li.onclick = function () {
+            li.remove();
+        };
+        document.getElementById("taskList").appendChild(li);
+        taskInput.value = "";
+    }
+</script>
+
+<h2 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">simple calculator</h2>
+<input type="text" id="calculatorInput" style="padding: 10px; width: 100%; margin-bottom: 10px;">
+<div>
+    <button onclick="appendToInput('1')" style="padding: 10px;">1</button>
+    <button onclick="appendToInput('2')" style="padding: 10px;">2</button>
+    <button onclick="appendToInput('3')" style="padding: 10px;">3</button>
+    <button onclick="appendToInput('+')" style="padding: 10px;">+</button>
+</div>
+<div>
+    <button onclick="appendToInput('4')" style="padding: 10px;">4</button>
+    <button onclick="appendToInput('5')" style="padding: 10px;">5</button>
+    <button onclick="appendToInput('6')" style="padding: 10px;">6</button>
+    <button onclick="appendToInput('-')" style="padding: 10px;">-</button>
+</div>
+<div>
+    <button onclick="appendToInput('7')" style="padding: 10px;">7</button>
+    <button onclick="appendToInput('8')" style="padding: 10px;">8</button>
+    <button onclick="appendToInput('9')" style="padding: 10px;">9</button>
+    <button onclick="appendToInput('*')" style="padding: 10px;">*</button>
+</div>
+<div>
+    <button onclick="appendToInput('0')" style="padding: 10px;">0</button>
+    <button onclick="appendToInput('.')" style="padding: 10px;">.</button>
+    <button onclick="calculateResult()" style="padding: 10px;">=</button>
+    <button onclick="appendToInput('/')" style="padding: 10px;">/</button>
+</div>
+<button onclick="clearInput()" style="padding: 10px; background-color: red; color: white; width: 100%;">Clear</button>
+<p id="calculationResult" style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;"></p>
+
+<script>
+    function appendToInput(value) {
+        document.getElementById("calculatorInput").value += value;
+    }
+
+    function clearInput() {
+        document.getElementById("calculatorInput").value = "";
+        document.getElementById("calculationResult").textContent = "";
+    }
+
+    function calculateResult() {
+        try {
+            const result = eval(document.getElementById("calculatorInput").value);
+            document.getElementById("calculationResult").textContent = result;
+        } catch (error) {
+            document.getElementById("calculationResult").textContent = "Error!";
+        }
+    }
+</script>
+
+<style>
+    
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+
+<p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">watch the progress bar!</p>
+<div style="width: 100%; background-color: lightgray; height: 30px;">
+    <div id="progressBar" style="width: 0; height: 100%; background-color: green;"></div>
+</div>
+<script>
+    let progress = 0;
+    setInterval(function() {
+        if (progress < 100) {
+            progress++;
+            document.getElementById("progressBar").style.width = `${progress}%`;
+        }
+    }, 100);
+</script>
+
+<p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">click the emoji to make it dance!</p>
+<div id="emoji" onclick="dance()" style="font-size: 50px; cursor: pointer;">💃</div>
+<script>
+    function dance() {
+        const emoji = document.getElementById("emoji");
+        emoji.style.transition = "transform 0.5s ease";
+        emoji.style.transform = "rotate(360deg)";
+        setTimeout(() => emoji.style.transform = "rotate(0deg)", 500);
+    }
+</script>
+
+
+    
+    
+    
+<p style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">click to burst confetti!</p>
+<button onclick="burstConfetti()" style="padding: 10px; background-color: #0e0e5e; color: aliceblue;">burst confetti</button>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+<script>
+    function burstConfetti() {
+        confetti();
+    }
+</script>
+
+
+
+
+
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: black;
+        color: #00ff00;
+        padding: 20px;
+    }
+    #cmd-container {
+        width: 80%;
+        margin: 0 auto;
+        background-color: black;
+        border: 1px solid #00ff00;
+        border-radius: 5px;
+        padding: 20px;
+    }
+    #cmd-output {
+        width: 100%;
+        height: 300px;
+        border: 1px solid #00ff00;
+        padding: 10px;
+        overflow-y: auto;
+        background-color: black;
+        color: #00ff00;
+    }
+    #cmd-input {
+        width: 100%;
+        padding: 5px;
+        background-color: black;
+        color: #00ff00;
+        border: none;
+        font-size: 14px;
+    }
+    #bsodOverlay {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 9999;
+    }
+    #safeModeOverlay {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 9999;
+    }
+</style>
+
+<div id="cmd-container">
+    <div id="cmd-output"></div>
+    <input type="text" id="cmd-input" placeholder="Type command here..." autofocus>
+</div>
+
+<!-- BSOD Overlay -->
+<div id="bsodOverlay">
+    <h3 style="color: red;">ERROR: Blue Screen of Death</h3>
+    <p>A critical system error has occurred. Please restart your system.</p>
+</div>
+
+<!-- Safe Mode Overlay -->
+<div id="safeModeOverlay">
+    <h3>Safe Mode</h3>
+    <p>Malware detected: <strong>malware.exe</strong></p>
+    <p>Please type <strong>del malware.exe</strong> to delete the file.</p>
+</div>
+
+<script>
+    document.getElementById('cmd-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            let command = e.target.value.trim().toLowerCase();
+            let outputDiv = document.getElementById('cmd-output');
+            let bsodOverlay = document.getElementById('bsodOverlay');
+            let safeModeOverlay = document.getElementById('safeModeOverlay');
+            e.target.value = '';  // Clear input
+
+            if (command === 'reload') {
+                outputDiv.innerHTML += "<p>C:\\> Reloading page...</p>";
+                setTimeout(function() {
+                    location.reload();
+                }, 1000);
+            } else if (command === 'help') {
+                outputDiv.innerHTML += "<p>C:\\> Available commands:</p>";
+                outputDiv.innerHTML += "<p>C:\\> reload - Reload the page</p>";
+                outputDiv.innerHTML += "<p>C:\\> help - Show available commands</p>";
+                outputDiv.innerHTML += "<p>C:\\> clear - Clear the command output</p>";
+                outputDiv.innerHTML += "<p>C:\\> time - Show current time</p>";
+                outputDiv.innerHTML += "<p>C:\\> greet - Display a random greeting</p>";
+                outputDiv.innerHTML += "<p>C:\\> color - Change background color</p>";
+                outputDiv.innerHTML += "<p>C:\\> quote - Show a random quote</p>";
+                outputDiv.innerHTML += "<p>C:\\> joke - Tell a random joke</p>";
+                outputDiv.innerHTML += "<p>C:\\> weather - Display a weather update</p>";
+                outputDiv.innerHTML += "<p>C:\\> status - Show system status</p>";
+                outputDiv.innerHTML += "<p>C:\\> malware - Simulate malware detection</p>";
+                outputDiv.innerHTML += "<p>C:\\> del malware.exe - Delete the detected malware</p>";
+            } else if (command === 'clear') {
+                outputDiv.innerHTML = '';
+            } else if (command === 'time') {
+                let time = new Date().toLocaleTimeString();
+                outputDiv.innerHTML += "<p>C:\\> Current time: " + time + "</p>";
+            } else if (command === 'greet') {
+                const greetings = ['Hello!', 'Hi there!', 'Greetings, user!', 'Welcome!'];
+                const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+                outputDiv.innerHTML += "<p>C:\\> " + randomGreeting + "</p>";
+            } else if (command === 'color') {
+                let colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.style.backgroundColor = randomColor;
+                outputDiv.innerHTML += "<p>C:\\> Background color changed to " + randomColor + "</p>";
+            } else if (command === 'quote') {
+                const quotes = ['“The only limit to our realization of tomorrow is our doubts of today.” – Franklin D. Roosevelt', 
+                                 '“Success is not final, failure is not fatal: It is the courage to continue that counts.” – Winston Churchill', 
+                                 '“It always seems impossible until it’s done.” – Nelson Mandela'];
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                outputDiv.innerHTML += "<p>C:\\> Quote: " + randomQuote + "</p>";
+            } else if (command === 'joke') {
+                const jokes = ['Why don’t skeletons fight each other? They don’t have the guts.', 
+                               'What do you call fake spaghetti? An impasta!', 
+                               'Why don’t oysters donate to charity? Because they are shellfish.'];
+                const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+                outputDiv.innerHTML += "<p>C:\\> Joke: " + randomJoke + "</p>";
+            } else if (command === 'weather') {
+                const weatherUpdate = 'The weather is sunny with a chance of code!';
+                outputDiv.innerHTML += "<p>C:\\> " + weatherUpdate + "</p>";
+            } else if (command === 'status') {
+                const status = 'System is running smoothly with no errors detected.';
+                outputDiv.innerHTML += "<p>C:\\> " + status + "</p>";
+            } else if (command === 'malware') {
+                outputDiv.innerHTML += "<p>C:\\> Malware detected: malware.exe</p>";
+                outputDiv.innerHTML += "<p>C:\\> Enter 'del malware.exe' to remove the file.</p>";
+                safeModeOverlay.style.display = "block"; // Show Safe Mode overlay
+            } else if (command === 'del malware.exe') {
+                safeModeOverlay.style.display = "none"; // Hide Safe Mode overlay
+                outputDiv.innerHTML += "<p>C:\\> File 'malware.exe' deleted successfully.</p>";
+            } else {
+                outputDiv.innerHTML += "<p>C:\\> Unknown command: " + command + "</p>";
+            }
+
+            outputDiv.scrollTop = outputDiv.scrollHeight;  // Auto-scroll to bottom
+        }
+    });
+</script>
+
+
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <h1 style="color: aliceblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">more fun things coming in the future!</h1>
+</body>
+</html>
